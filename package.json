@@ -2,7 +2,7 @@
   "name": "fireburn-notebook",
   "version": "0.0.1",
   "description": "Fireburn notebook",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
     "start": "electron ."
   },
