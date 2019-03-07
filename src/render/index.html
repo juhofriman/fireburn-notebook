@@ -22,7 +22,7 @@
         margin-bottom: 1em;
       }
       #color-box {
-        
+
       }
       blockquote {
         background: #f9f9f9;
@@ -70,15 +70,7 @@
         <div id="search">
           <input type="text" placeholder="find"/>
         </div>
-        <div class="listing-item">
-          Readme.md
-        </div>
-        <div class="listing-item">
-          Docker.md
-        </div>
-        <div class="listing-item">
-          AWS.md
-        </div>
+        <div id="file-listing"></div>
         <div style="margin-top:5em">
           <div id="random-seed" style="font-size: 8px"></div>
         </div>
@@ -100,7 +92,11 @@
 
       require('./color-box.js');
 
+      require('./file-listing.js');
+
       require('./random-seed-emitter.js');
+
+      require('./file-watcher.js');
     </script>
   </body>
 </html>
