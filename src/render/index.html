@@ -21,6 +21,9 @@
       #search {
         margin-bottom: 1em;
       }
+      #color-box {
+        
+      }
       blockquote {
         background: #f9f9f9;
         border-left: 10px solid #ccc;
@@ -82,7 +85,10 @@
 
 
       </div>
-      <div id="content"></div>
+      <div id="content-wrapper">
+        <div id="color-box">My background color changes because I listen to randon-seed-emitter.js and render color using received random number!</div>
+        <div id="content"></div>
+      </div>
     </div>
 
     <script>
@@ -91,6 +97,8 @@
       require('./renderer.js');
 
       require('./random-seed-display.js');
+
+      require('./color-box.js');
 
       require('./random-seed-emitter.js');
     </script>
