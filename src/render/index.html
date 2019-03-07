@@ -67,9 +67,6 @@
     <div class="flex-container">
 
       <div id="listing">
-        <div id="search">
-          <input type="text" placeholder="find"/>
-        </div>
         <div id="file-listing"></div>
         <div style="margin-top:5em;width: 200px;">
           <div id="random-seed" style="font-size: 8px"></div>
@@ -97,6 +94,8 @@
       require('./random-seed-emitter.js');
 
       require('./file-watcher.js');
+
+      require('./keyboard-event-emitter.js');
     </script>
   </body>
 </html>
