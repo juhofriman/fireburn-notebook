@@ -4,7 +4,7 @@ const path = '/Users/juhofr/Documents/fireburn-docs';
 
 function listAndEmit() {
   fs.readdir(path, (err, items) => {
-    window.eventbus.publish('FILES_CHANGED', items.filter(item => item.endsWith('.md')));
+    window.eventbus.updateState('FILE_LISTING', (oldState) => items.filter(item => item.endsWith('.md')));
   });
 }
 

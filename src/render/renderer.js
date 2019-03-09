@@ -33,17 +33,15 @@ function readAndRender(path, cb) {
 
  let watcher = null;
 
-window.eventbus.subscribe('OPEN_FILE', (payload) => {
-  console.log('Opening file: ' + payload);
-  currentFile = payload;
+window.eventbus.readState('currentFile', (currentFile) => {
   if(watcher) {
     watcher.close();
   }
-  readAndRender('/Users/juhofr/Documents/fireburn-docs/' + payload, () => {
-    watcher = fs.watch('/Users/juhofr/Documents/fireburn-docs/' + payload, (eventType, filename) => {
+  readAndRender('/Users/juhofr/Documents/fireburn-docs/' + currentFile, () => {
+    watcher = fs.watch('/Users/juhofr/Documents/fireburn-docs/' + currentFile, (eventType, filename) => {
       console.log(eventType);
       if(eventType === 'change') {
-        readAndRender('/Users/juhofr/Documents/fireburn-docs/' + payload, () => {});
+        readAndRender('/Users/juhofr/Documents/fireburn-docs/' + currentFile, () => {});
       }
     });
   });
@@ -57,7 +55,7 @@ window.eventbus.subscribe('TOGGLE_EDIT', () => {
 window.eventbus.subscribe('SAVE', () => {
   edit = !edit;
   var editor = document.getElementById('editor');
-  fs.writeFile('/Users/juhofr/Documents/fireburn-docs/' + currentFile, editor.value, () => {
+  fs.writeFile('/Users/juhofr/Documents/fireburn-docs/' + window.eventbus.getState('currentFile'), editor.value, () => {
     render();
   });
 
