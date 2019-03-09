@@ -16,4 +16,24 @@ fs.watch(path, (eventType, filename) => {
   listAndEmit();
 });
 
+let watcher = null;
+
+function emitNewFileData(file) {
+  fs.readFile(path + '/' + file, 'utf8', (err, data) => {
+    window.eventbus.updateState('FILEDATA', () => data);
+  });
+}
+
+window.eventbus.readState('currentFile', (currentFile, state) => {
+  if(watcher) {
+    watcher.close();
+  }
+  watcher = fs.watch(path + '/' + currentFile, (eventType, filename) => {
+    if(eventType === 'change') {
+      emitNewFileData(filename);
+    }
+  });
+  emitNewFileData(currentFile);
+});
+
 listAndEmit();

@@ -1,4 +1,3 @@
-const fs = require('fs');
 var MarkdownIt = require('markdown-it'),
     md = new MarkdownIt();
 
@@ -23,28 +22,9 @@ function render() {
   }
 }
 
-function readAndRender(path, cb) {
-  fs.readFile(path, 'utf8', function(err, file) {
-      data = file;
-      render();
-      cb();
-  });
-}
-
- let watcher = null;
-
-window.eventbus.readState('currentFile', (currentFile) => {
-  if(watcher) {
-    watcher.close();
-  }
-  readAndRender('/Users/juhofr/Documents/fireburn-docs/' + currentFile, () => {
-    watcher = fs.watch('/Users/juhofr/Documents/fireburn-docs/' + currentFile, (eventType, filename) => {
-      console.log(eventType);
-      if(eventType === 'change') {
-        readAndRender('/Users/juhofr/Documents/fireburn-docs/' + currentFile, () => {});
-      }
-    });
-  });
+window.eventbus.readState('FILEDATA', (filedata) => {
+  data = filedata;
+  render();
 });
 
 window.eventbus.subscribe('TOGGLE_EDIT', () => {
@@ -55,9 +35,7 @@ window.eventbus.subscribe('TOGGLE_EDIT', () => {
 window.eventbus.subscribe('SAVE', () => {
   edit = !edit;
   var editor = document.getElementById('editor');
-  fs.writeFile('/Users/juhofr/Documents/fireburn-docs/' + window.eventbus.getState('currentFile'), editor.value, () => {
-    render();
-  });
+  window.eventbus.updateState('FILEDATA', () => editor.value);
 
 });
 
