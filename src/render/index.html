@@ -73,12 +73,6 @@
 
       <div id="listing">
         <div id="file-listing"></div>
-        <div style="margin-top:5em;width: 200px;">
-          <div id="random-seed" style="font-size: 8px"></div>
-          <div id="color-box">My background color changes because I listen to randon-seed-emitter.js and render color using received random number!</div>
-        </div>
-
-
       </div>
       <div id="content-wrapper">
         <div id="content"></div>
@@ -87,19 +81,9 @@
 
     <script>
       require('./eventbus.js');
-
       require('./mounted/content-display.js');
-
-      require('./mounted/random-seed-display.js');
-
-      require('./mounted/color-box.js');
-
       require('./mounted/file-listing.js');
-
-      require('./random-seed-emitter.js');
-
       require('./file-watcher.js');
-
       require('./keyboard-event-emitter.js');
     </script>
   </body>
