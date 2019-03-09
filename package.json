@@ -8,8 +8,9 @@
   },
   "keywords": [
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "author": "Juho Friman <juho.t.friman@gmail.com>",
+  "repository": "https://github.com/juhofriman/fireburn-notebook",
+  "license": "MIT",
   "devDependencies": {
     "electron": "^4.0.7"
   },
