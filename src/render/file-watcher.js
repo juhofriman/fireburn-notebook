@@ -36,4 +36,10 @@ window.eventbus.readState('currentFile', (currentFile, state) => {
   emitNewFileData(currentFile);
 });
 
+window.eventbus.subscribe('PERSIST_FILE', () => {
+  fs.writeFile(path + '/' + window.eventbus.getState('currentFile'), window.eventbus.getState('FILEDATA'), 'utf8', () => {
+    console.log('Persisted file');
+  });
+});
+
 listAndEmit();

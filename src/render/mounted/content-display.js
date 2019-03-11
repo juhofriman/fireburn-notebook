@@ -36,6 +36,7 @@ window.eventbus.subscribe('SAVE', () => {
   edit = !edit;
   var editor = document.getElementById('editor');
   window.eventbus.updateState('FILEDATA', () => editor.value);
+  window.eventbus.publish('PERSIST_FILE');
 
 });
 
