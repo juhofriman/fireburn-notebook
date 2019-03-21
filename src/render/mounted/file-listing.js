@@ -12,10 +12,13 @@ function render(data, openedFile) {
     content.removeChild(content.firstChild);
   }
   data.forEach((file, index) => {
-    var message = document.createElement('div');
+    var message = document.createElement('li');
+
     message.innerHTML = file;
     if(file === openedFile) {
-      message.style = 'font-weight: bold';
+      message.className = 'pure-menu-item currently-opened-file';
+    } else {
+      message.className = 'pure-menu-item';
     }
     content.appendChild(message);
   });

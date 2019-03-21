@@ -11,10 +11,16 @@ function render() {
     content.removeChild(content.firstChild);
   }
   if(edit) {
+    const editForm = document.createElement('form');
+    editForm.className = 'pure-form';
       const editArea = document.createElement('textarea');
+      editArea.className = 'pure-input-1 editor';
       editArea.id = 'editor';
       editArea.value = data;
-      content.appendChild(editArea);
+      editArea.rows = 30;
+      editArea.cols = 80;
+      editForm.appendChild(editArea);
+      content.appendChild(editForm);
       editArea.focus();
 
   } else {
